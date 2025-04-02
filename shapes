@@ -1,5 +1,12 @@
 import math
 
+def Distance(x1, y1, x2, y2):
+    return math.sqrt((x2-x1)**2 + (y2-y1)**2)
+    
+def Midpoint(x1, y1, x2, y2):
+    return (((x1+x2)/2), ((y1+y2)/2))
+    
+
 class Shape:
     def __init__(self):
         pass
@@ -60,3 +67,15 @@ if __name__ == "__main__":
     circ = Circle(5)
     print("Circle area:", circ.area())
     print("Circle perimeter (circumference):", circ.perimeter())
+    print(Distance(0, 0, 1, 1))
+    print(Midpoint(0, 0, 1, 1))
+    print("Input x1:")
+    x1 = int(input())
+    print("Input y1:")
+    y1 = int(input())
+    print("Input x2:")
+    x2 = int(input())
+    print("Input y2:")
+    y2 = int(input())
+    print(Distance(x1, y1, x2, y2))
+    print(Midpoint(x1, y1, x2, y2))
