@@ -2,32 +2,27 @@ import math
 
 def Distance(x1, y1, x2, y2):
     return math.sqrt((x2-x1)**2 + (y2-y1)**2)
-    
+   
 def Midpoint(x1, y1, x2, y2):
     return (((x1+x2)/2), ((y1+y2)/2))
-    
 
 class Shape:
     def __init__(self):
         pass
-    
     def area(self):
         pass
-    
     def perimeter(self):
         pass
-    
+   
 class Rectangle(Shape):
     def __init__(self, length, width):
         self.length = length
         self.width = width
-        
     def area(self):
         return self.length * self.width
-            
     def perimeter(self):
-        return 2 * (self.length + self.width)
-        
+        return self.length*2 + self.width*2
+       
 class Triangle(Shape):
     def __init__(self, base, height, side1, side2, side3):
         self.base = base
@@ -35,47 +30,77 @@ class Triangle(Shape):
         self.side1 = side1
         self.side2 = side2
         self.side3 = side3
-         
     def perimeter(self):
         return self.side1 + self.side2 + self.side3
-        
     def area(self):
-        return 0.5 * self.base * self.height
-
+        return (1/2)*(self.base)*(self.height)
 class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius
-        
+       
+    def perimeter(self):
+        return 2*(math.pi)*self.radius
+       
     def area(self):
-        return math.pi * self.radius ** 2
-    
-    def perimeter(self):  # This is the circumference of the circle
-        return 2 * math.pi * self.radius
-                
+        return math.pi*(self.radius**2)
+       
+def calculator_switch():
+    while True:
+        calculation = input("Enter which calculation you want to preform.\n \
+        A - Square\n \
+        B - Triangle\n \
+        C - Circle\n \
+        D - Distance\n \
+        E - Midpoint\n \
+        STOP - To stop the program.\n")
+        match calculation:
+            case "A":
+                print("You entered A for Square.")
+                side1 = input("Enter a side length for your square:\n")
+                side1 = int(side1)
+                side2 = input("Enter another side length for your square:\n")
+                side2 = int(side2)
+                rect = Rectangle(side1, side2)
+                print("Rectangle Area: ", rect.area())
+                print("Rectangle Perimeter: ", rect.perimeter())
+            case "B":
+                print("You entered B for Triangle.")
+                side1 = input("Enter a side length, which is the base, for your triangle:\n")
+                side1 = int(side1)
+                side2 = input("Enter another side length, which is the height, for your triangle:\n")
+                side2 = int(side2)
+                side3 = input("Enter another side length for your triangle.\n")
+                side3 = int(side3)
+                tri = Triangle(side1, side2, side1, side2, side3)
+                print("Triangle Area: ", tri.area())
+                print("Triangle Perimeter: ", tri.perimeter())
+            case "C":
+                print("You entered C for Circle.")
+                radius = input("Enter the radius:\n")
+                radius = int(radius)
+                circ = Circle(radius)
+                print("Circle Area: ", circ.area())
+                print("Circle Circumference: ", circ.perimeter())
+            case "D":
+                print("You entered D for Distance.")
+                x1 = int(input("Enter the x value of the first coordinate:\n"))
+                y1 = int(input("Enter the y value of the first coordinate:\n"))
+                x2 = int(input("Enter the x value of the second coordinate:\n"))
+                y2 = int(input("Enter the y value of the second coordinate:\n"))
+                print("The distance is: ", Distance(x1, y1, x2, y2))
+            case "E":
+                print("You entered E for Midpoint.")
+                x1 = int(input("Enter the x value of the first coordinate:\n"))
+                y1 = int(input("Enter the y value of the first coordinate:\n"))
+                x2 = int(input("Enter the x value of the second coordinate:\n"))
+                y2 = int(input("Enter the y value of the second coordinate:\n"))
+                print("The midpoint is: ", Midpoint(x1, y1, x2, y2))
+            case "STOP":
+                print("Stopping the program.")
+                break
+            case _:
+                print("Invaild entry. Restart program and enter a vaild input.")
+                break
+
 if __name__ == "__main__":
-    # Rectangle
-    rect = Rectangle(3, 4)
-    print("Rectangle area:", rect.area())
-    print("Rectangle perimeter:", rect.perimeter())
-    
-    # Triangle
-    tri = Triangle(3, 4, 3, 4, 5)
-    print("Triangle area:", tri.area())
-    print("Triangle perimeter:", tri.perimeter())
-    
-    # Circle
-    circ = Circle(5)
-    print("Circle area:", circ.area())
-    print("Circle perimeter (circumference):", circ.perimeter())
-    print(Distance(0, 0, 1, 1))
-    print(Midpoint(0, 0, 1, 1))
-    print("Input x1:")
-    x1 = int(input())
-    print("Input y1:")
-    y1 = int(input())
-    print("Input x2:")
-    x2 = int(input())
-    print("Input y2:")
-    y2 = int(input())
-    print(Distance(x1, y1, x2, y2))
-    print(Midpoint(x1, y1, x2, y2))
+    calculator_switch()
